@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpService } from '../services/http.service';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-screen2',
@@ -33,11 +35,11 @@ export class Screen2Component implements OnInit {
 
         }
         else if (apiResponse.status === 400){
-          alert(apiResponse.message);
+          swal(apiResponse.message);
           this.pin= '';
         }
         else if (apiResponse.status === 500){
-          alert(apiResponse.message);
+          swal(apiResponse.message);
           this.pin= '';
         }
       }, (error) => {
@@ -53,9 +55,7 @@ export class Screen2Component implements OnInit {
       "card_number": localStorage.getItem('card_number'),
       "amount":this.amount
     }
-    console.log("data",data)
     this.appService.withdraw(data).subscribe((apiResponse) => {
-      console.log('apiResponse', apiResponse)
       if(apiResponse.status === 200){
         localStorage.setItem("new_balance",apiResponse.data.new_balance)
         localStorage.setItem("2000",apiResponse.data.counttwo)
@@ -65,13 +65,9 @@ export class Screen2Component implements OnInit {
       this.route.navigate(["/screen3"]);
       }
       else if (apiResponse.status === 400){
-        alert(apiResponse.message);
+        swal("Alert",apiResponse.message,"info");
         this.amount='';
       }
-      // else if (apiResponse.status === 500){
-      //   alert(apiResponse.message);
-      //   this.pin= '';
-      // }
     }, (error) => {
       console.log(error)
 
@@ -87,15 +83,15 @@ export class Screen2Component implements OnInit {
         this.appService.checkBal(data).subscribe((apiResponse) => {
           console.log('apiResponse', apiResponse)
           if(apiResponse.status === 200){
-            alert(apiResponse.data[0].balance)
+            swal("Account Balance INR",(apiResponse.data[0].balance).toString(),"success")
   
           }
           else if (apiResponse.status === 400){
-            alert(apiResponse.message);
+            swal("Alert",apiResponse.message,"info");
             this.pin= '';
           }
           else if (apiResponse.status === 500){
-            alert(apiResponse.message);
+            swal("Alert",apiResponse.message,"info");
             this.pin= '';
           }
         }, (error) => {

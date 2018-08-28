@@ -26,7 +26,8 @@ export class Screen3Component implements OnInit {
         "debit": localStorage.getItem("debit"),
         "balance": localStorage.getItem("new_balance")
       }
-      this.appService.changePin(data).subscribe((apiResponse) => {
+      console.log(data)
+      this.appService.createTrans(data).subscribe((apiResponse) => {
         console.log('apiResponse', apiResponse)
         
       }, (error) => {
