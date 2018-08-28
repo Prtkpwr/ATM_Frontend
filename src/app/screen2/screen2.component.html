@@ -1,0 +1,59 @@
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Change PIN</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Withdraw Money</button>
+  <button type="button" class="btn btn-info btn-lg" >Balance Enquiry</button>
+
+  <!-- Modal Change Password -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Change PIN</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form >
+                <div class="form-group">
+                    <label for="pin">New PIN :</label>
+                    <input [(ngModel)]="pin" type="password" class="form-control" id="pin" placeholder="Enter New PIN" name="pin">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button (click)="changePin()" class="btn btn-default" data-dismiss="modal">Confirm</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Widraw Money-->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Withdraw Money</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label for="amount">Enter Amount :</label>
+                    <input [(ngModel)]="amount" type="number" class="form-control" id="amount" placeholder="Enter Amount" name="amount">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button (click)="withdrawMoney()" class="btn btn-default" data-dismiss="modal">Confirm</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
