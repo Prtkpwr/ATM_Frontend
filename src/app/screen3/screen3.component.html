@@ -1,9 +1,20 @@
-<div class="text-center">
-  <p>Debited Amount : {{debit}}</p>
-  <p>New Balance : {{new_balance}}</p>
-  Notes:
-  <p>2000 * {{counttwo}}</p>
-  <p>500 * {{countfive}}</p>
-  <p>100 * {{countone}}</p>
-  <button type="button" (click)="exitFun()" class="btn btn-default">Close</button>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="box col-md-4">
+    <div class="text-center">
+      <p> <strong>Reciept</strong> </p>
+      <hr>
+      <p>Debited Amount : {{debit}}</p>
+      <p>Balance Amount : {{new_balance}}</p>
+      <hr>
+      <h4>Notes:</h4> 
+      <p>2000 * {{counttwo}}</p>
+      <p>500 * {{countfive}}</p>
+      <p>100 * {{countone}}</p>
+      <hr>
+      <button style="margin-left:5px" type="button" [routerLink]="['/screen2']" class="btn btn-default">Withdraw Again</button>
+      <button style="margin-left:5px" type="button" (click)="exitFun()" class="btn btn-default">Exit</button>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
 </div>

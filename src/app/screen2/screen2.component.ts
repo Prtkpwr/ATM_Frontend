@@ -32,7 +32,7 @@ export class Screen2Component implements OnInit {
         this.route.navigate(["/screen1"]);
 
         }
-        else if (apiResponse.status === 404){
+        else if (apiResponse.status === 400){
           alert(apiResponse.message);
           this.pin= '';
         }
@@ -64,10 +64,10 @@ export class Screen2Component implements OnInit {
         localStorage.setItem("debit",this.amount)
       this.route.navigate(["/screen3"]);
       }
-      // else if (apiResponse.status === 404){
-      //   alert(apiResponse.message);
-      //   this.pin= '';
-      // }
+      else if (apiResponse.status === 400){
+        alert(apiResponse.message);
+        this.amount='';
+      }
       // else if (apiResponse.status === 500){
       //   alert(apiResponse.message);
       //   this.pin= '';
@@ -77,5 +77,37 @@ export class Screen2Component implements OnInit {
 
     })
   }
+
+    // Change PIN
+    public balanceCheck: any = () => {
+      let data = {
+        card_number: localStorage.getItem('card_number')
+      }
+      if(data.card_number){
+        this.appService.checkBal(data).subscribe((apiResponse) => {
+          console.log('apiResponse', apiResponse)
+          if(apiResponse.status === 200){
+            alert(apiResponse.data[0].balance)
+  
+          }
+          else if (apiResponse.status === 400){
+            alert(apiResponse.message);
+            this.pin= '';
+          }
+          else if (apiResponse.status === 500){
+            alert(apiResponse.message);
+            this.pin= '';
+          }
+        }, (error) => {
+          console.log(error)
+    
+        })
+      }
+    } // Change PIN End
+
+    public cancelEverything:any = () => {
+       localStorage.removeItem('card_number')
+       this.route.navigate(["/screen1"]);
+    } 
 
 }
