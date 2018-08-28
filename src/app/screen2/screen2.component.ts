@@ -56,9 +56,14 @@ export class Screen2Component implements OnInit {
     console.log("data",data)
     this.appService.withdraw(data).subscribe((apiResponse) => {
       console.log('apiResponse', apiResponse)
-      // if(apiResponse.status === 200){
-      // this.route.navigate(["/screen3"]);
-      // }
+      if(apiResponse.status === 200){
+        localStorage.setItem("new_balance",apiResponse.data.new_balance)
+        localStorage.setItem("2000",apiResponse.data.counttwo)
+        localStorage.setItem("500",apiResponse.data.countfive)
+        localStorage.setItem("100",apiResponse.data.countone)
+        localStorage.setItem("debit",this.amount)
+      this.route.navigate(["/screen3"]);
+      }
       // else if (apiResponse.status === 404){
       //   alert(apiResponse.message);
       //   this.pin= '';

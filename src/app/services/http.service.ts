@@ -34,4 +34,14 @@ export class HttpService {
     public checkBal(data):any{
       return this._http.post((this.Url + '/cards/check_balance'), data)
     }
+    public createTrans(data):any{
+      return this._http.post((this.Url + '/transaction/create'), data)
+    }
+    public isValid():any{
+      if (localStorage.getItem('card_number')) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 }

@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { HttpService } from './services/http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GuardService } from './services/guard.service';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     RouterModule.forRoot([
       { path: 'screen1', component: Screen1Component },
-      { path: 'screen2', component: Screen2Component },
-      { path: 'screen3', component: Screen3Component },
+      { path: 'screen2', component: Screen2Component,canActivate: [GuardService] },
+      { path: 'screen3', component: Screen3Component,canActivate: [GuardService] },
+      { path: '', redirectTo: 'screen1', pathMatch: 'full'},
+      { path: '**', redirectTo: 'screen1', pathMatch: 'full'},
     ])
   ],
   providers: [],
